@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Author</th>
+      <th>Comment entry</th>
+      <th>Comment's Blog Entry Id</th>
+      <th>Blog Entry Title</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user.email %></td>
+        <td><%= comment.comment_entry %></td>
+        <td><%= comment.blog_post_id %></td>
+        <td><%= comment.blog_post.title %> </td>
+        <td><%= link_to 'Show', comment %></td>
+        <% if can? :update, comment %>
+        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  
+</script>
+<br>
+
+<%= link_to 'New Comment', new_comment_path %>

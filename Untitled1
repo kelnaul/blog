@@ -1,0 +1,10 @@
+BlogPost.all.each do |b|
+    b.update(
+        :user_id => 1
+    )
+end 
+
+Comment.all.each do |b|
+    b.update( :user_id => 1)
+end
+        

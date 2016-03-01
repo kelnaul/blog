@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<body background="blob:https%3A//drive.google.com/1aa1248a-118d-45da-8593-9e761aacb1d3">
+<head>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  
+  <nav role="navigation">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">BLOG</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li class="menu_thing">
+          <%= link_to "Home", "https://blog-kelnaul.c9users.io/blog_posts", class: "waves-effect waves-light btn"%>
+        </li>
+        
+        <li>
+          <%= link_to "New Blog Post", "https://blog-kelnaul.c9users.io/blog_posts/new", class: "waves-effect waves-light btn" %>
+        </li>
+        
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to "Your Posts", "https://blog-kelnaul.c9users.io/your_posts", class: "waves-effect waves-light btn" %>
+            <%= link_to "Edit Profile", edit_user_registration_path, method: :get, class: "waves-effect waves-light btn" %>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "waves-effect waves-light btn" %>
+          <% end %>
+        </li>
+      </ul>
+      
+      <ul class="side-nav" id="mobile-demo">
+        <li>
+          <%= link_to "Home", "https://blog-kelnaul.c9users.io/blog_posts" %>
+        </li>
+        
+        <li>
+          <%= link_to "New Blog Post", "https://blog-kelnaul.c9users.io/blog_posts/new" %>
+        </li>
+        
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to "Your Posts", "https://blog-kelnaul.c9users.io/your_posts" %>
+            <%= link_to "Edit Profile", edit_user_registration_path, method: :get %>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+  
+<script>
+  $(".button-collapse").sideNav();
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Blog Posts:</h1>
+
+
+
+    <div class="row">
+    <% @blog_posts.each do |blog_post| %>
+    
+        <div class="col s12 m6">
+          <div class="card teal lighten-3">
+            <div class="card-content white-text">
+              <span class="card-title">
+                <%= link_to blog_post.title, blog_post, class:"white-text" %>
+              </span>
+              <p>By: <i><%= link_to blog_post.user.email, user_posts_path(id: blog_post.user.id) %></i></p>
+              
+              <% if blog_post.blog_entry.length>100%>
+                <p><%= blog_post.blog_entry[0..10] %>
+                ...[<%= link_to 'Read More', blog_post, class:"white-text" %>]</p>
+              <% else %>
+                <p><%= blog_post.blog_entry %> </p>
+              <% end %>
+              
+              <%= blog_post.created_at.strftime('%m/%d/%y %H:%M:%S') %>
+            </div>
+          
+            <div class="divider"></div>
+  
+              <% if can? :update, blog_post %>
+                 <%= link_to "Edit", edit_blog_post_path(blog_post), class: "waves-effect waves-teal btn-flat" %>
+                 <%= link_to "Destroy", blog_post, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-teal btn-flat" %>
+              <% else %>
+                 <br><br>
+              <% end %>
+              
+            
+          </div>
+        </div>
+    <% end %>
+    </div>
+  
+  
+
+
+<br>
+<%= link_to 'New Blog post', new_blog_post_path, class:"waves-effect waves-light btn white-text" %>
